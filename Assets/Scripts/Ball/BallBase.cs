@@ -5,11 +5,21 @@ using UnityEngine;
 public class BallBase : MonoBehaviour
 {
     public Vector3 speed = new Vector3(1, 1, 0);
+    private Vector3 startSpeed;
+
     public string keyToCheck = "Player";
 
     [Header("Randomization")]
     public Vector2 randSpeedY = new Vector2(1, 3);
     public Vector2 randSpeedX = new Vector2(1, 3);
+
+    private Vector3 _startPosition;
+
+    private void Awake()
+    {
+        _startPosition = transform.position;
+        startSpeed = speed;
+    }
 
     // Update is called once per frame
     void Update()
@@ -50,5 +60,11 @@ public class BallBase : MonoBehaviour
         rand = Random.Range(randSpeedY.x, randSpeedY.y);
 
         speed.y = rand;
+    }
+
+    public void ResetBall()
+    {
+        transform.position = _startPosition;
+        speed = startSpeed;
     }
 }

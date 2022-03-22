@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -12,7 +13,20 @@ public class Player : MonoBehaviour
 
     public Rigidbody2D myrigidbody2D;
 
+    [Header("Points")]
+    public int currentPoints;
+    public TextMeshProUGUI uiTextPoint;
 
+    private void Awake()
+    {
+        ResetPlayer();
+    }
+
+    private void ResetPlayer()
+    {
+        currentPoints = 0;
+        updateUI();
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,5 +39,16 @@ public class Player : MonoBehaviour
             myrigidbody2D.MovePosition(transform.position + (transform.up * -speed));
         }
 
+    }
+
+    public void AddPoint()
+    {
+        currentPoints++;
+        updateUI();
+    }
+
+    private void updateUI()
+    {
+        uiTextPoint.text = currentPoints.ToString();
     }
 }
