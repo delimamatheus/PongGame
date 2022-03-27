@@ -14,6 +14,7 @@ public class BallBase : MonoBehaviour
     public Vector2 randSpeedX = new Vector2(1, 3);
 
     private Vector3 _startPosition;
+    private bool _canMove = false;
 
     private void Awake()
     {
@@ -24,6 +25,8 @@ public class BallBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_canMove) return;
+
         transform.Translate(speed);
     }
 
@@ -66,5 +69,10 @@ public class BallBase : MonoBehaviour
     {
         transform.position = _startPosition;
         speed = startSpeed;
+    }
+
+    public void CanMove(bool state)
+    {
+        _canMove = state;
     }
 }

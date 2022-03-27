@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public BallBase ball;
 
+    public float timeSetBallFree = 1f;
+
     public static GameManager Instance;
 
     private void Awake()
@@ -13,8 +15,20 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void ResetBallPosition()
+    public void ResetBall()
     {
+        ball.CanMove(false);
         ball.ResetBall();
+        Invoke(nameof(SetBallFree), timeSetBallFree);
+    }
+
+    private void SetBallFree()
+    {
+        ball.CanMove(true);
+    }
+
+    public void StartGame()
+    {
+        ball.CanMove(true);
     }
 }

@@ -90,10 +90,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe85067c6601d5a44a96ef116d598492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 25
   keyCodeMoveUp: 273
   keyCodeMoveDown: 274
   myrigidbody2D: {fileID: 6752208427516831604}
+  currentPoints: 0
+  uiTextPoint: {fileID: 0}
 --- !u!50 &6752208427516831604
 Rigidbody2D:
   serializedVersion: 4
