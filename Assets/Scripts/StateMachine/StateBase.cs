@@ -34,6 +34,6 @@ public class StateResetPosition : StateBase
     public override void OnStateEnter(object o = null)
     {
         base.OnStateEnter(o);
-        GameManager.Instance.ResetBall();
+        GameManager.Instance.ResetPositions();
     }
 }

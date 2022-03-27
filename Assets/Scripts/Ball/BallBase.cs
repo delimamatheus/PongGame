@@ -20,6 +20,7 @@ public class BallBase : MonoBehaviour
     {
         _startPosition = transform.position;
         startSpeed = speed;
+        //SetBallPositionToWinner(startSpeed);
     }
 
     // Update is called once per frame
@@ -41,6 +42,27 @@ public class BallBase : MonoBehaviour
             speed.y *= -1;
         }
     }
+
+    /*private void SetBallPositionToWinner()
+    {
+        switch (TriggerPoint.Instance.lastWinner)
+        {
+            case 0:
+                speed = startSpeed;
+                break;
+            case 1:
+                speed.x = -1;
+                speed.y = 1;
+                break;
+            case 2:
+                speed.x = 1;
+                speed.y = 1;
+                break;
+            default:
+                GameManager.Instance.ResetGame();
+                break;
+        }
+    }*/
 
     private void OnPlayerCollision()
     {
@@ -68,6 +90,7 @@ public class BallBase : MonoBehaviour
     public void ResetBall()
     {
         transform.position = _startPosition;
+        //SetBallPositionToWinner(); 
         speed = startSpeed;
     }
 

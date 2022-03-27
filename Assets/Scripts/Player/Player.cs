@@ -6,12 +6,15 @@ using TMPro;
 public class Player : MonoBehaviour
 {
     public float speed = 10;
+    public Rigidbody2D myrigidbody2D;
+    public bool _canMove = false;
 
     [Header("Key Setup")]
     public KeyCode keyCodeMoveUp = KeyCode.UpArrow;
     public KeyCode keyCodeMoveDown = KeyCode.DownArrow;
 
-    public Rigidbody2D myrigidbody2D;
+    [Header("Initial Position")]
+    private Vector3 _startPosition;
 
     [Header("Points")]
     public int currentPoints;
@@ -19,6 +22,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        _startPosition = transform.position;
         ResetPlayer();
     }
 
@@ -31,6 +35,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!_canMove) return;
+
         if (Input.GetKey(keyCodeMoveUp))
         {
             myrigidbody2D.MovePosition(transform.position + (transform.up * speed));
@@ -47,8 +53,18 @@ public class Player : MonoBehaviour
         updateUI();
     }
 
-    private void updateUI()
+    public void updateUI()
     {
         uiTextPoint.text = currentPoints.ToString();
+    }
+
+    public void CanMove(bool state)
+    {
+        _canMove = state;
+    }
+
+    public void ResetPlayerPosition()
+    {
+        transform.position = _startPosition;
     }
 }

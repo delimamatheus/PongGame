@@ -51,6 +51,11 @@ public class StateMachine : MonoBehaviour
          {
             SwitchStates(States.PLAYING);
          }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.Instance.ResetGame();
+        }
     }
 
     public void ResetPosition()

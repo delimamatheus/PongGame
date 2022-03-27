@@ -5,8 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public BallBase ball;
+    public Player player1;
+    public Player player2;
 
-    public float timeSetBallFree = 1f;
 
     public static GameManager Instance;
 
@@ -15,20 +16,34 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void ResetBall()
+    public void ResetPositions()
     {
         ball.CanMove(false);
+        player1.CanMove(false);
+        player2.CanMove(false);
         ball.ResetBall();
-        Invoke(nameof(SetBallFree), timeSetBallFree);
-    }
-
-    private void SetBallFree()
-    {
-        ball.CanMove(true);
+        player1.ResetPlayerPosition();
+        player2.ResetPlayerPosition();
     }
 
     public void StartGame()
     {
         ball.CanMove(true);
+        player1.CanMove(true);
+        player2.CanMove(true);
+    }
+
+    public void ResetGame()
+    {
+        ResetPositions();
+        ResetPoints();
+    }
+
+    public void ResetPoints()
+    {
+        player1.currentPoints = 0;
+        player2.currentPoints = 0;
+        player1.updateUI();
+        player2.updateUI();
     }
 }
